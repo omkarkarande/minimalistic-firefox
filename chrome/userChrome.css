@@ -1,5 +1,16 @@
-/* URL Dropdown */
+/* -----------------------
+ Global Layout
+----------------------- */
+/* Moves Findbar to top */
+.browserContainer > findbar {
+  -moz-box-ordinal-group: 0;
+  border-top: none !important;
+}
 
+/* -----------------------
+ URL bar settings
+----------------------- */
+/* URL Dropdown */
 #navigator-toolbox,
 #urlbar-background,
 [part="content"] {
@@ -7,34 +18,51 @@
 }
 
 /* URL text color */
-
 #statuspanel-label,
 #urlbar:not([open]) {
   color: currentColor !important;
 }
 
-
-#PersonalToolbar,
-#nav-bar,
-.browserContainer > findbar {
-  box-shadow: 2px red !important;
-  background-image: none !important;
+/* Remove Multi-Container icon */
+#pageAction-urlbar-_testpilot-containers {
+  display: none !important;
 }
 
+/* Text direction in url drop down */
+#customizationui-widget-panel,
+#urlbar-container {
+  direction: ltr !important;
+}
 
+/* Search icon hide and show */
+#identity-icon-box,
+#identity-permission-box[hasPermissions],
+#identity-permission-box[hasSharingIcon],
+#identity-permission-box[open="true"] {
+  opacity: 0 !important;
+  transition: 0.2s !important;
+  width: 0 !important;
+  padding-inline: 0px !important;
+}
+#urlbar-input-container:hover #identity-icon-box,
+#urlbar-input-container:hover #identity-permission-box {
+  opacity: 100 !important;
+  transition: 0.2s !important;
+  width: 32px !important;
+  padding-inline: 8px !important;
+}
+#urlbar-input-container #identity-icon-box {
+  margin-right: 2px;
+}
+
+/* -----------------------
+ NAV bar settings
+----------------------- */
 /* Top bar height */
 :root #nav-bar {
   margin-top: -44px !important;
   height: 44px !important;
 }
-
-
-#TabsToolbar,
-#nav-bar {
-  transition: 0.2s !important;
-}
-
-
 
 /* Tabs start position */
 #TabsToolbar {
@@ -49,38 +77,19 @@
   direction: rtl;
 }
 
-/* Url bar settings only */
+/* Url bar position */
 #urlbar-container {
   min-width: 0 !important;
   margin-left: 1px !important;
 }
 
-#identity-box.extensionPage #identity-icon-label,
-.search-panel-one-offs-header.search-panel-header,
-.tab-close-button,
-toolbarspring {
-  display: none !important;
-  background: none !important;
-}
-
-/* makes the nav bar transparent */
+/* Makes the nav bar transparent */
 #PersonalToolbar,
 #nav-bar {
   background-color: #0000 !important;
 }
 
-#customization-container > *,
-#statuspanel-label {
-  background-color: var(--toolbar-field-background-color) !important;
-}
-
-
-/* Customization page width setting */
-#customization-panelWrapper {
-  max-width: 36em !important;
-}
-
-/* hide UI elements from the window */
+/* Hide UI elements from the window */
 #back-button,
 #firefox-view-button,
 #forward-button,
@@ -94,14 +103,30 @@ toolbarspring {
   display: none;
 }
 
+/* Hide the extension menu item */
+#unified-extensions-button {
+  display: none !important;
+}
 
+/* -----------------------
+ Customization Page Settings
+----------------------- */
+#customization-container > *,
+#statuspanel-label {
+  background-color: var(--toolbar-field-background-color) !important;
+}
+
+/* Customization page width setting */
+#customization-panelWrapper {
+  max-width: 36em !important;
+}
+
+/* -----------------------
+ Tab Settings
+----------------------- */
 #tabbrowser-tabs {
   border-inline-start-width: 0 !important;
 }
-
-
-/* Remove Multi-Containers */
-#pageAction-urlbar-_testpilot-containers {display: none !important}
 
 /* Hide New Tab button */
 #new-tab-button,
@@ -111,12 +136,68 @@ toolbarspring {
   width: 40px !important;
   display: none !important;
 }
-#urlbar-background {
-  outline: 0 !important;
-  transition: 0.15s !important;
+
+/* No FF icon on new tab button */
+.tabbrowser-tab[label="New Tab"] .tab-icon-image {
+  opacity: 0;
 }
 
-/* Tab Counter / All Tabs Right Corner */
+/* Hide label */
+.tabbrowser-tab[label="New Tab"] .tab-label-container {
+  overflow: hidden;
+}
+
+/* Hide the close button on tabs */
+.tab-close-button {
+  display: none !important;
+  background: none !important;
+}
+
+/* Close button on left of tab when hovered */
+.tabbrowser-tab:not([pinned]):hover .tab-close-button {
+  -moz-box-ordinal-group: 0 !important;
+  margin-inline: -6px 2px !important;
+  display: -moz-inline-box !important;
+}
+
+/* Hide favicon on hover */
+.tabbrowser-tab:not([pinned]):hover .tab-icon-image {
+  display: none !important;
+}
+
+.tabbrowser-tab[label="New Tab"] {
+  width: min-content !important;
+  -moz-box-flex: 0 !important;
+  flex-grow: 0 !important;
+}
+.tabbrowser-tab[fadein][label="New Tab"] {
+  min-width: 1px !important;
+}
+.tabbrowser-tab[label="New Tab"] .tab-content {
+  width: 36px;
+  margin-inline-end: 0 !important;
+}
+.tabbrowser-tab[label="New Tab"] .tab-content::before {
+  content: "";
+}
+
+/* Tab Text */
+.tabbrowser-tab .tab-content {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+/* Tab label vertical alignment */
+.tab-label {
+  margin-block-start: -1px !important;
+}
+.tab-secondary-label {
+  margin-bottom: 0 !important;
+}
+
+/* -----------------------
+ Tab Counter and All Tabs
+----------------------- */
 #TabsToolbar-customization-target {
   counter-reset: tabCount;
 }
@@ -152,96 +233,4 @@ toolbarspring {
   left: 50%;
   transform: translate(-50%, -30%);
   padding: 0 3px;
-}
-
-/* Text direction in url drop down */
-#customizationui-widget-panel,
-#urlbar-container {
-  direction: ltr !important;
-}
-
-/* No FF icon on new tab button */
-.tabbrowser-tab[label="New Tab"] .tab-icon-image {
-  opacity: 0;
-}
-
-.tabbrowser-tab[label="New Tab"] .tab-close-button,
-.tabbrowser-tab[label="New Tab"] .tab-label-container {
-  overflow: hidden;
-}
-
-/* Close button on left of tab when hovered */
-.tabbrowser-tab:not([pinned]):hover .tab-close-button {
-  -moz-box-ordinal-group: 0 !important;
-  margin-inline: -6px 2px !important;
-  display: -moz-inline-box !important;
-}
-/* Hide favicon on hover */
-.tabbrowser-tab:not([pinned]):hover .tab-icon-image {
-  display: none !important;
-}
-
-.tabbrowser-tab[label="New Tab"] {
-  width: min-content !important;
-  -moz-box-flex: 0 !important;
-  flex-grow: 0 !important;
-}
-.tabbrowser-tab[fadein][label="New Tab"] {
-  min-width: 1px !important;
-}
-.tabbrowser-tab[label="New Tab"] .tab-content {
-  width: 36px;
-  margin-inline-end: 0 !important;
-}
-.tabbrowser-tab[label="New Tab"] .tab-content::before {
-  content: "";
-}
-
-/* Tab Text */
-.tabbrowser-tab .tab-content {
-  padding-left: 12px !important;
-  padding-right: 12px !important;
-}
-
-/* Search bar hide and show */
-#identity-icon-box,
-#identity-permission-box[hasPermissions],
-#identity-permission-box[hasSharingIcon],
-#identity-permission-box[open="true"] {
-  opacity: 0 !important;
-  transition: 0.2s !important;
-  width: 0 !important;
-  padding-inline: 0px !important;
-}
-#urlbar-input-container:hover #identity-icon-box,
-#urlbar-input-container:hover #identity-permission-box {
-  opacity: 100 !important;
-  transition: 0.2s !important;
-  width: 32px !important;
-  padding-inline: 8px !important;
-}
-#urlbar-input-container #identity-icon-box {
-  margin-right: 2px;
-}
-
- /* Tab label vertical alignment */
-.tab-label {
-  margin-block-start: -1px !important;
-}
-.tab-secondary-label {
-  margin-bottom: 0 !important;
-}
-
-/* Moves Findbar to top */
-.browserContainer > findbar {
-  -moz-box-ordinal-group: 0;
-  border-top: none !important;
-}
-
-#unified-extensions-button {
-  display: none !important;
-}
-
-:root {
-  scrollbar-color: #757575 transparent;
 }
