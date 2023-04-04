@@ -1,0 +1,5 @@
+@-moz-document url-prefix("about:") {
+  :root {
+      --in-content-page-background: #161616 !important;
+  }
+}
