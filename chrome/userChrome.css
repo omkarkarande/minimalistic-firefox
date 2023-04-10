@@ -131,10 +131,8 @@
 /* Hide New Tab button */
 #new-tab-button,
 #tabs-newtab-button {
-  -moz-window-dragging: drag;
-  opacity: 0;
+  opacity: 0.8;
   width: 40px !important;
-  display: none !important;
 }
 
 /* No FF icon on new tab button */
